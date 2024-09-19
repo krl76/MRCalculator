@@ -8,6 +8,7 @@ using UnityEngine;
 public class Calculator : MonoBehaviour
 {
     [SerializeField] private TextMeshPro _inputField;
+    [SerializeField] private CubesManager _cubesManager;
 
     private string actions = "+-/x=";
     private string values = "0123456789";
@@ -21,6 +22,17 @@ public class Calculator : MonoBehaviour
     private void Awake()
     {
         _inputField.text = "";
+    }
+
+    public void SpawnCubes()
+    {
+        if(!actions.Contains(_inputField.text) && _iter != 0)
+            _cubesManager.SpawnCubes(Convert.ToInt32(_inputField.text));
+    }
+
+    public void ClearCubes()
+    {
+        _cubesManager.ClearCubes();
     }
 
     public void ClearField()
